@@ -6,6 +6,7 @@ import { UsersModule } from './users/users.module';
 import { SequelizeModule } from '@nestjs/sequelize';
 import envConfig from '../config/env';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+// import env from "../config/env";
 
 @Module({
   /**
@@ -26,9 +27,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
       useFactory: async (configService: ConfigService) => ({
         dialect: 'mysql',
         host: configService.get('DB_HOST', 'localhost'),
-        port: configService.get<number>('DB_PORT', 3306),
+        port: +configService.get<number>('DB_PORT', 3306),
         username: configService.get('DB_USER', 'root'),
-        password: configService.get('DB_PASSWORD', 'Abcd@1234'),
+        password: configService.get('DB_PASSWD'),
         database: configService.get('DB_DATABASE', 'envDb'),
         models: [],
         timezone: '+08:00',
