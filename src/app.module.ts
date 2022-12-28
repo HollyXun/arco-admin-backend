@@ -29,7 +29,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
         host: configService.get('DB_HOST', 'localhost'),
         port: +configService.get<number>('DB_PORT', 3306),
         username: configService.get('DB_USER', 'root'),
-        password: configService.get('DB_PASSWD'),
+        password: configService.get('DB_PASSWD', '12345678'),
         database: configService.get('DB_DATABASE', 'envDb'),
         models: [],
         timezone: '+08:00',

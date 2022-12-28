@@ -1,5 +1,6 @@
 import { Controller, Get, Post, Put } from '@nestjs/common';
 import { AppService } from './app.service';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 @Controller()
 export class AppController {
@@ -10,7 +11,7 @@ export class AppController {
     return this.appService.getHello();
   }
 }
-
+@ApiTags('app')
 @Controller('app')
 export class MyController {
   constructor(private readonly appService: AppService) {}
@@ -19,6 +20,7 @@ export class MyController {
    * 固定路径
    * 匹配get请求：http://localhost:3005/app/list
    */
+  @ApiOperation({ summary: '获取HelloWorld String' })
   @Get('list')
   getHello(): string {
     return this.appService.getHello();
