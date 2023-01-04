@@ -6,6 +6,7 @@ import envConfig from '../config/env';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
+import { UserModule } from './user/user.module';
 
 @Dependencies(DataSource)
 @Module({
@@ -38,6 +39,8 @@ import { DataSource } from 'typeorm';
         synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
       }),
     }),
+
+    UserModule,
   ],
 
   /**
