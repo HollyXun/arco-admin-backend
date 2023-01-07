@@ -7,6 +7,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { DataSource } from 'typeorm';
 import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Dependencies(DataSource)
 @Module({
@@ -14,7 +15,6 @@ import { UserModule } from './user/user.module';
    * 导入模块的列表，如果需要使用其他模块的服务，需要通过这里导入；
    */
   imports: [
-    PostsModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: [envConfig.path],
@@ -39,8 +39,11 @@ import { UserModule } from './user/user.module';
         synchronize: true, //根据实体自动创建数据库表， 生产环境建议关闭
       }),
     }),
+    PostsModule,
 
     UserModule,
+
+    AuthModule,
   ],
 
   /**
